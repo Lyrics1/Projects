@@ -1,0 +1,7 @@
+		.content
+		.content-input
+			if user
+				textarea.textArea(rows='3',placeholder="请输入5个以上评论") 
+				button.btn.btn-primary.content-submit 发送
+			else
+				input.form-control.please(type='text', value='评论请先登录', readonly='')				

@@ -1,0 +1,47 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			if user
+				div.showInfo
+					div.col-md-6
+						.input-group
+							label
+								span 昵称 ：
+								input.dear(type='text', placeholder='Search',value="#{name}")
+						.input-group
+							lable
+								div 简介 :
+								textarea.introduce #{introduce}
+						.input-group
+							span 性别 ：
+							input.man(type='radio',name="sex",checked="#{man}")
+							span 男
+							input.woman(type='radio',name="sex",checked="#{woman}")
+							span 女
+							input.none(type='radio',name="sex",checked="#{none}")
+							span 保密
+						.input-group
+							span 生日 ：
+							input.birthday(type='text', placeholder='1997-1-24',value="#{birthday}")
+
+					div.personimg.col-md-6
+						div.IMG
+							img.class-rounded.showIMg(src="#{userImg}")
+							div.uodateImg 
+								span 修改头像
+					button.btn.btn-info.saveInfo(type='button') 保存
+				div.showChange
+					div.file
+						form#i(name='form1',action="/updateImg",enctype="multipart/form-data",method="POST")
+							input#picpath(type='file', name='picpath', style='display:none;', onchange='document.form1.path.value=this.value')
+							input.btn.btn-default(type='button', value='上传照片', onclick='document.form1.picpath.click()')
+							input.upfile(name="path",type="text",value="")
+							span 支持jpg、png、bmp格式的图片，且文件小于20M
+					div#photo
+						img.photos.img-thumbnail(src="",alt="w")
+					input.btn.btn-default(type='button', value='保存',onclick="document.getElementById('i').submit()")
+					input.btn.btn-default(type='button', value='取消')
+			else
+				请登录

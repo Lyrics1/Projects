@@ -1,0 +1,69 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			.col-md-6
+				video(src="#{movies.flash}",allowFullScreen = "true",quality="high",width="720",height="400",align="middle",type="application/x-shockwave-flash", controls="controls")
+			.col-md-5.downself
+				dl.dl-horizontal
+					dd.movieID= movies.id
+					dt 电影名字
+					dd= movies.title
+					dt 导演
+					dd= movies.doctor
+					dt 国家
+					dd= movies.country
+					dt 语言
+					dd= movies.language
+					dt 上映时间
+					dd= movies.year
+					dt 简介
+					dd= movies.summary
+		.content-input
+			if user
+				textarea.textArea(rows='3',placeholder="请输入5个字以上评论") 
+				button.btn.btn-primary.content-submit 发送
+			else
+				p.tipSign 请先登录然后评论!
+		.loginTip
+			span.glyphicon.glyphicon-remove.icon(aria-hidden='true')
+			button.btn.btn-info(type='button') 请先登录!
+		.content
+			each item in comment
+				.media.comment
+					a.pull-left(href='#')
+						img.media-object.img-circle(src='../image/photo/#{item.userid}/#{item.img}')
+					.media-body
+						p.media-heading.show-username
+							span(class="name-#{item.id}") #{item.name}
+							span.time #{item.time}
+						.media.show-content 
+							span(class="bcontent-#{item.id}") #{item.content}
+							label.nice-right
+								span.receive(data-id="#{item.id}")  回复  &nbsp;&nbsp;&nbsp;
+								span.glyphicon.glyphicon-hand-right(aria-hidden='true',data-id="#{item.id}") &nbsp;
+								span.count(class="count-#{item.id}") #{item.nice}
+						.bcontent(class="b-#{item.id}")
+							label
+								span.bname #{item.obName}
+								| :
+								span.bbcontent #{item.obcontent}
+						.content-receive(class='iner-#{item.id}')
+							textarea.textreceive(rows='2',placeholder="请输入5个字以上评论",class="i-#{item.id}")
+							button.btn.btn-sm.btn-primary.button-receive(data-id="#{item.id}") 发送
+		.footer
+			span.Copyright 张帆 © 2017-10-29
+
+
+
+
+
+					
+
+
+			
+			
+				
+					
+				

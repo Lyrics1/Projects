@@ -1,0 +1,41 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			form.form-horizontal(method="post",action="/admin/movie/new")
+				input(type="hidden",name="id",value="#{movies.id}")
+				.form-group
+					label.col-sm-2.control-label(for='inputTitle') 电影名
+					.col-sm-10
+						input#inputTitle.form-control(type='text', name="title" ,value="#{movies.title}")
+				.form-group
+					label.col-sm-2.control-label(for='exampleInputPassword1') 导演
+					.col-sm-10
+						input#inputDoctor.form-control(type='text', name="doctor" ,value="#{movies.doctor}")
+				.form-group
+					label.col-sm-2.control-label(for='exampleInputPassword1') 国家
+					.col-sm-10
+						input#inputCountry.form-control(type='text', name="country" ,value="#{movies.country}")
+				.form-group
+					label.col-sm-2.control-label(for='exampleInputPassword1') 语言
+					.col-sm-10
+						input#inputLanguage.form-control(type='text', name="language" ,value="#{movies.language}")
+				.form-group
+					label.col-sm-2.control-label(for='exampleInputPassword1') 上映时间
+					.col-sm-10
+						input#inputYear.form-control(type='text', name="year" ,value="#{movies.year}")
+				.form-group
+					label.col-sm-2.control-label(for='exampleInputPassword1') 简介
+					.col-sm-10
+						input#inputSummary.form-control(type='text', name="summary" ,value="#{movies.summary}")
+				.form-group
+					label.col-sm-2.control-label(for='exampleInputPassword1') 海报地址
+					.col-sm-10
+						input#inputPoster.form-control(type='text', name="poster" ,value="#{movies.poster}")
+				.form-group
+					label.col-sm-2.control-label(for='exampleInputPassword1') flash
+					.col-sm-10
+						input#inputPoster.form-control(type='text', name="flash" ,value="#{movies.flash}")
+				.from-group
+					button.btn.btn-primary(type="submit") 提交

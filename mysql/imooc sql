@@ -1,0 +1,73 @@
+create table imooc
+(id int not null auto_increment,
+ title varchar(30) not null,
+doctor varchar(20) not null,
+country varchar(50) not null,
+language varchar(50) not null,
+year varchar(30) not null,
+summary varchar(200) not null,
+poster varchar(200) not null,
+flash varchar(200) not null,
+pushTime varchar(200) not null,
+primary key(id,title,doctor)
+)default charset utf8;
+
+//user 
+
+create table user
+(id int auto_increment primary key,
+name varchar(15),
+password varchar(100),
+tel varchar(11),
+img varchar(100) default "../image/1.jpg",
+introduce varchar(200) comment '简介',
+sex varchar(2),
+birthday varchar(50),
+address varchar(100),
+role int default 1
+)default charset utf8;
+
+
+insert  into user (name,password,tel,role) values ("张帆","c80e999bdba0e8956428491050529392","18829571810",10);
+ 
+//admin
+create table admin
+(id int auto_increment primary key,
+name varchar(15) not null,
+password varchar(100),
+tel varchar(11),
+role int default 10
+)default charset utf8;
+
+
+//评论
+create table comment(
+id int auto_increment primary key comment '当前评论id',
+messageID int comment '被回复的消息的id',
+movieID int comment '电影id',
+observerID int comment '被回复的用户id',
+obcontent varchar(200) comment '被回复的内容',
+obName varchar(20) comment  '被回复者的名字',
+commenterID int not null comment '当前用户id',
+time varchar(30) not null comment '消息发送的时间',
+content varchar(200) comment '内容',
+nice int default 0 comment '评论数目' ,
+foreign key(movieID) references imooc (id),
+foreign key(observerID) references user (id),
+foreign key(commenterID) references user (id)
+
+)default charset utf8;
+
+
+
+create table nice 
+(id int auto_increment primary key,
+messageid int ,
+userid int,
+count int ,
+foreign key(messageid) references comment(id),
+foreign key(userid) references user(id)
+)default charset utf8;
+
+
+
